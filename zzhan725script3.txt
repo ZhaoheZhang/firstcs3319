@@ -1,0 +1,45 @@
+-- Zhaohe's Assignment2-3
+
+USE zzhan725assign2db;
+
+-- SQL commands
+-- 1.
+SELECT description FROM product;
+
+-- 2.
+SELECT DISTINCT city FROM customer;
+
+-- 3.
+SELECT * FROM agent ORDER BY city;
+
+-- 4.
+SELECT firstname, lastname FROM customer WHERE city = "Springfield";
+
+-- 5.
+SELECT lastname FROM customer WHERE agentid in (SELECT agentid FROM agent WHERE firstname = "Regis");
+
+-- 6.
+SELECT description FROM product WHERE description REGEXP "pad" OR "Pad";
+
+-- 7.
+SELECT customer.lastname, product.description, deal.quantity FROM customer, product, deal WHERE customer.customerid = deal.customerid AND product.productid = deal.productid;
+
+-- 8.
+SELECT SUM(quantity) AS "Homer's Total Purchases" FROM deal WHERE customerid in (SELECT customerid FROM customer WHERE firstname = "Homer");
+
+-- 9.
+SELECT customer.firstname, customer.lastname, SUM(deal.quantity) AS TotalPurchases FROM customer,deal WHERE customer.customerid = deal.customerid GROUP BY customer.lastname;
+
+-- 10.
+SELECT product.description, product.quantity FROM product WHERE product.productid NOT IN (SELECT productid FROM deal);
+
+-- 11.
+SELECT product.description, product.quantity FROM product WHERE product.productid NOT IN (SELECT productid FROM deal WHERE customerid IN (SELECT customerid FROM customer WHERE firstname = "Fred" AND lastname = "Flintstone"));
+
+-- 12.
+SELECT customer.firstname AS "CustomerFirstname", customer.lastname AS "CustomerLastname", agent.firstname AS "AgentFirstname", agent.lastname AS "AgentLastname" FROM customer, agent WHERE customer.city = agent.city;
+
+-- 13.
+SELECT SUM(quantity) AS "Number of Knee Pads sold" FROM deal WHERE productid in (SELECT productid FROM product WHERE description = "Knee Pads");
+
+

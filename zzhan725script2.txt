@@ -1,4 +1,60 @@
 -- Zhaohe's Assignment2-2
 
--- insert data into database
-INSERT INTO agent (agentid, )
+USE zzhan725assign2db;
+
+-- load data into table product
+LOAD DATA LOCAL INFILE 'ldata.txt' INTO TABLE product FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+SELECT * FROM product;
+INSERT INTO product VALUES ("66", "Elbow pads", 14.25, 120);
+INSERT INTO product VALUES ("15", "Hoodie", 149, 50);
+
+-- insert data into table agent
+INSERT INTO agent VALUES ("99", "Hugh", "Grant", "Springfield", 16);
+INSERT INTO agent VALUES ("22", "Courtney", "Cox", "New York", 25);
+INSERT INTO agent VALUES ("66", "Rosie", "ODonnell", "Ottawa", 100);
+INSERT INTO agent VALUES ("33", "David", "Letterman", "Bedrock", 100);
+INSERT INTO agent VALUES ("11", "Regis", "Philbin", "Boston", 33);
+INSERT INTO agent VALUES ("12", "Rosie", "Cox", "Ottawa", 50);
+INSERT INTO agent VALUES ("51", "Zhaohe", "Zhang", "Beijing", 100);
+
+-- insert data into table customers
+INSERT INTO customer VALUES ("21", "Homer", "Simpson", "Springfield", "686-8956", "99");
+INSERT INTO customer VALUES ("31", "Sideshow", "Bob", "Springfield", "686-5555", "66");
+INSERT INTO customer VALUES ("12", "Monty", "Burns", "Springfield", "789-0000", "99");
+INSERT INTO customer VALUES ("15", "Fred", "Flintstone", "Bedrock", "777-2345", "11");
+INSERT INTO customer VALUES ("13", "Super", "Man", "Kypto", "888-1234", "33");
+INSERT INTO customer VALUES ("10", "Barney", "Rubble", "Bedrock", "777-1234", "11");
+INSERT INTO customer VALUES ("14", "Peter", "Griffens", "Providence", "987-4567", "99");
+
+-- insert data into table deal
+INSERT INTO deal VALUES (20, "21", "99");
+INSERT INTO deal VALUES (14, "21", "12");
+INSERT INTO deal VALUES (10, "21", "66");
+INSERT INTO deal VALUES (1, "31", "99");
+INSERT INTO deal VALUES (2, "31", "12");
+INSERT INTO deal VALUES (4, "31", "78");
+INSERT INTO deal VALUES (2, "31", "66");
+INSERT INTO deal VALUES (2, "15", "66");
+INSERT INTO deal VALUES (2, "15", "78");
+INSERT INTO deal VALUES (19, "14", "66");
+
+-- show all tables
+SELECT * FROM product;
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM deal;
+
+-- change super man into wonder woman
+UPDATE customer SET firstname = "Wonder", lastname = "Woman" WHERE firstname = "Super" AND lastname = "Man";
+
+-- change purchase quantity of Sideshow
+UPDATE deal SET quantity = 5 WHERE customerid IN (SELECT customerid FROM customer WHERE firstname = "Sideshow");
+
+-- change city into Boston
+UPDATE customer SET city = "Boston" WHERE agentid IN (SELECT agentid FROM agent WHERE firstname = "Regis");
+
+-- show all tables
+SELECT * FROM product;
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM deal;
