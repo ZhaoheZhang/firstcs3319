@@ -3,7 +3,7 @@
 USE zzhan725assign2db;
 
 -- load data into table product
-LOAD DATA LOCAL INFILE 'ldata.txt' INTO TABLE product FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE product FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 SELECT * FROM product;
 INSERT INTO product VALUES ("66", "Elbow pads", 14.25, 120);
 INSERT INTO product VALUES ("15", "Hoodie", 149, 50);

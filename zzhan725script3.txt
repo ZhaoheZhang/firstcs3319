@@ -42,4 +42,8 @@ SELECT customer.firstname AS "CustomerFirstname", customer.lastname AS "Customer
 -- 13.
 SELECT SUM(quantity) AS "Number of Knee Pads sold" FROM deal WHERE productid in (SELECT productid FROM product WHERE description = "Knee Pads");
 
+-- 14.
+SELECT description AS "Item purchased more than 3 times" FROM product WHERE productid in (SELECT productid FROM deal HAVING COUNT(productid) > 3);
 
+-- 15.
+SELECT agent.firstname, agent.lastname FROM agent WHERE agentid IN(SELECT agentid FROM customer WHERE customerid IN(SELECT customerid FROM deal WHERE productid IN(SELECT productid FROM product WHERE description = 'Knee Pads')));

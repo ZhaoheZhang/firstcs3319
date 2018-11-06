@@ -1,0 +1,22 @@
+-- Zhaohe's Assignment2-4
+
+USE zzhan725assign2db;
+
+SELECT * FROM product;
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM deal;
+
+-- create the view
+CREATE VIEW v AS SELECT customer.firstname,customer.lastname,product.description,deal.quantity,product.cost, deal.quantity * product.cost AS totalcost FROM customer,product,deal WHERE customer.customerid = deal.customerid AND product.productid = deal.productid ORDER BY customer.lastname;
+
+SELECT * FROM v;
+
+SELECT * FROM v WHERE totalcost > 100;
+
+-- Delete Hoodie created by myself
+DELETE FROM product WHERE description = "Hoodie";
+SELECT * FROM product;
+
+-- Because agentid in agent is a foreign key in other tables, so it cannot be deleted unless these tables are deleted.
+DELETE FROM agent WHERE city = "Springfield";
