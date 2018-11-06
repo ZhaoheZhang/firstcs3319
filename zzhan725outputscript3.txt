@@ -119,11 +119,11 @@ SELECT SUM(quantity) AS "Number of Knee Pads sold" FROM deal WHERE productid in 
 Number of Knee Pads sold
 7
 --------------
-SELECT description AS "Item purchased more than 3 times" FROM product WHERE productid in (SELECT productid FROM deal HAVING COUNT(productid) > 3)
+SELECT description FROM product WHERE productId IN(SELECT productid FROM deal GROUP BY productid HAVING COUNT(productid) >3)
 --------------
 
-Item purchased more than 3 times
-Socks
+description
+Elbow pads
 --------------
 SELECT agent.firstname, agent.lastname FROM agent WHERE agentid IN(SELECT agentid FROM customer WHERE customerid IN(SELECT customerid FROM deal WHERE productid IN(SELECT productid FROM product WHERE description = 'Knee Pads')))
 --------------
