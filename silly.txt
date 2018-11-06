@@ -1,0 +1,1 @@
+sudo mysql --verbose -pcs3319 < zzhan725script1.txt  > zzhan725outputscript1.txt 2>&1
